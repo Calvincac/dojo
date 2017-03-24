@@ -10,30 +10,20 @@ moedas de R$0,50, R$0,10, R$0,05 e R$0,01
 
 */
 
-$valorPago = 50 ;
-$notas = [100, 50, 10, 5, 1];
-$moedas = [ 0.50, 0.10, 0.05, 0.1];
+$money = [100, 50, 10, 5, 1, 0.50, 0.10, 0.05, 0.01];
+$cost = 10;
+$price = 50;
+$change = $price - $cost; //40
+$tmp = 0;
+$count = 0;
 
- if ($valorPago <= 1)  {
-
-	$valorPago = $moedas;
-echo "oi1";
-} else if ($valorPago <= 10 ){ 
-
-	$valorPago = array_slice($notas, 3);
-
-echo "oi2";
-} else if ($valorPago <= 50){
-
-	$valorPago =  array_slice($notas, 2);
-	if($valorPago <= 1){
-		
-       }
-	print_r($valorPago);
-echo "oi3";
-} else if ($valorPago < 100) {
-	$valorPago =  array_slice($notas, 1);
-echo "oi4";
+foreach ($money as $value) {
+	
+	while ($change = $change+$value > $value ) {
+		$change = $change - $value;
+		print $change . PHP_EOL;
+		$count++;
+	}
 }
 
-
+//print $count . PHP_EOL;
