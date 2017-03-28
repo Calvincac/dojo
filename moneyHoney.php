@@ -11,19 +11,20 @@ moedas de R$0,50, R$0,10, R$0,05 e R$0,01
 */
 
 $money = [100, 50, 10, 5, 1, 0.50, 0.10, 0.05, 0.01];
-$cost = 10;
-$price = 50;
+$cost = 30;
+$price = 100;
 $change = $price - $cost; //40
-$tmp = 0;
 $count = 0;
-
+$var = [];
 foreach ($money as $value) {
 	
-	while ($change = $change+$value > $value ) {
-		$change = $change - $value;
-		print $change . PHP_EOL;
+	while ( $change >= $value ) {
+		$change = $change - $value; 
+		$var[] = $value;	
 		$count++;
 	}
 }
 
-//print $count . PHP_EOL;
+print "O número de cédulas é: " . $count  . PHP_EOL;
+print "As seguintes cedulas e/ou moedas serão devolvidas: " .  PHP_EOL;
+print_r($var);
