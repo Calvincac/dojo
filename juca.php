@@ -10,8 +10,8 @@ $chico = 1.5;
 $juca = 1.1;
 
 while ($juca <= $chico) {
-    $chico += 0.2;
-    $juca += 0.3;
+    $chico += 0.02;
+    $juca += 0.03;
     $years++;        
 }
 
