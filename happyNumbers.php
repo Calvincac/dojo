@@ -18,12 +18,20 @@ $arr = [];
 $result = 0;
 $temp = 0;
 $a = [];
+
 while ($result != 1) {
-    if ($number != 7) {
+    if ($temp != 0) {
+        // Padrão encontrado pelos números não felizes.
+        if($temp==4){
+            print "Não é um número feliz! \n";   
+            exit;          
+        }
+
         $number = $temp;
         $temp = 0;
         unset($arr);
     }
+
     preg_match_all("/\d/", $number, $match);
     foreach ($match[0] as $x) {
         $arr[] = $x * $x;
