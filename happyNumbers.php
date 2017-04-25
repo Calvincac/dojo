@@ -13,7 +13,7 @@
    Desenvolva um programa que determine se um número é feliz ou triste.
  */
 
-$number = 7;
+$number = $argv[1];
 $arr = [];
 $result = 0;
 $temp = 0;
