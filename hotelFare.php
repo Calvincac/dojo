@@ -16,3 +16,23 @@ de diárias que ele permaneceu no hotel.
 
 */
 
+$diaria = 60;
+$dias = $argv[1]; //recebe por parametro no terminal
+$nome = $argv[2];
+
+if(!isset($dias) || !isset($nome) ) {
+    print("Um dos argumentos não foi informado");
+    exit;
+}
+
+if ($dias == 15) {
+    print("Nome: {$nome} valor: " . 60*6 . "\n");
+}
+
+if ($dias < 15) {
+    print(" Nome: {$nome} valor: " . 60*8 . "\n");
+}
+
+if ($dias > 15) {
+    print(" Nome: {$nome} valor: " . 60*5.5 . "\n");
+}
