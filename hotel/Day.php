@@ -6,7 +6,7 @@ class Day
 
     public function __construct($type)
     {
-        $this->$typeOfDay = $type;
+        $this->typeOfDay = $type;
     }
 
 }
