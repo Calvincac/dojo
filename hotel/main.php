@@ -47,9 +47,13 @@ Bridgewood -> Regular weekday: 160 Rewards weekday: 110 --- Regular weekend: 60 
 Ridgewood -> Regular weekday: 220  Rewards weekday: 100 --- Regular weekend: 150 Rewards weekend: 40
 
 */
+$input = "Regular: 16Mar2009(mon), 17Mar2009(tues), 18Mar2009(wed)";
 $price = new Price(80);
 $day = new Day("weekend");
-$customer = new Customer("regular");
+$customer = new Customer("Regular");
+$patternDays = "/\b[a-z]+\b/";
+$patternCustomerType = "/^([\w]+)/"; 
+
 
 $hotel =  new Hotel(4, $price, $customer, $day);
 
