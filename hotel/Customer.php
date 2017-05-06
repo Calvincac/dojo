@@ -1,12 +1,9 @@
 <?php
+// as an alternative to ENUM in PHP
 
-class Customer
+abstract class Customer
 {
-    private $type;
-
-    public function __construct($type)
-    {
-        $this->type = $type;                
-    } 
+    const REGULAR = "regular";
+    const REWARDS = "rewards";
 
 }

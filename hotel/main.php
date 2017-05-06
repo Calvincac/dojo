@@ -50,14 +50,14 @@ Ridgewood -> Regular weekday: 220  Rewards weekday: 100 --- Regular weekend: 150
 $input = "Regular: 16Mar2009(mon), 17Mar2009(tues), 18Mar2009(wed)";
 $price = new Price(80);
 $day = new Day("weekend");
-$customer = new Customer("Regular");
+
 $patternDays = "/\b[a-z]+\b/";
 $patternCustomerType = "/^([\w]+)/"; 
+Customer::REGULAR;
 
 
-$hotel =  new Hotel(4, $price, $customer, $day);
+//$hotel =  new Hotel(4, $price, $customer, $day);
 
-print_r($hotel);
 
 
 
