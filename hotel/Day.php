@@ -2,26 +2,46 @@
 
 class Day
 {
-    private $typeOfDay;
+    private $pattern;
     private $days;
 
-    public function __construct($type)
+    public function __construct($pattern)
     {
-        $this->typeOfDay = $type;
+        $this->pattern = $pattern;
     }
 
+    /*
+    * Method responsible for processing day type.
+    */
     public function processType()
     {
-        $pattern = "/\b[a-z]+\b/";
-        preg_match_all($pattern, $this->typeOfDay, $days);
+        $regex = "/\b[a-z]+\b/";
+        preg_match_all($regex, $this->pattern, $days);
         $this->days = $days[0];
         
         return $this;        
     }
 
-    public function getDay()
+    /*
+    * Method responsible for returning days
+    */
+    public function getDays()
     {
         return $this->days;
     }
+    
+    /*
+    * Method respnonsible for getting the sum of weekends
+    */
+    public function getSumOfWeekendDays()
+    {        
+        foreach($this->days as $day){
+            $day  = strtolower($day);
+            if ($day == "sat" || $day == "sun"){
+                $weekendDays++;
+            }
+        }
 
+        return  $weekendDays;
+    }
 }
