@@ -61,7 +61,8 @@ class Hotel
         $arrDays = $this->day->getDays();        
         if($this->isRegularCustomer()) {
             if ($this->day->hasWeekend()) {
-                
+                $weekendDays = $this->day->getSumOfWeekendDays();
+                print_r($weekendDays);
             }
         }        
     }    
