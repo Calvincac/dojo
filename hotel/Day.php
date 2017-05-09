@@ -49,6 +49,9 @@ class Day
         return  $weekendDays;
     }
 
+    /*
+    * Method responsible for verifying if weekend has been added to input
+    */
     public function hasWeekend()
     {
         $this->processType();
