@@ -16,6 +16,7 @@ class Hotel
         $this->customer = $customer;
         $this->day = $day;
         $this->pattern = $pattern;
+        $this->processTypeOfCustomer();
     }
 
     /*
@@ -35,8 +36,6 @@ class Hotel
     */
     public function isRegularCustomer()
     {
-        $this->processTypeOfCustomer();
-
         $type = strtolower($this->customer);
         if ($type == "regular"){
             return true;
@@ -49,7 +48,6 @@ class Hotel
     */
     public function getCustomerType()
     {
-        $this->processTypeOfCustomer();
         return $this->customer;
     }
 
@@ -58,11 +56,11 @@ class Hotel
     */
     public function calculateRateBasedOnDays()
     {
-        $arrDays = $this->day->getDays();        
+        $arrDays = $this->day->getDays();
+
         if($this->isRegularCustomer()) {
             if ($this->day->hasWeekend()) {
                 $weekendDays = $this->day->getSumOfWeekendDays();
-                print_r($weekendDays);
             }
         }        
     }    

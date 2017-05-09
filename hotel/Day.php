@@ -8,6 +8,7 @@ class Day
     public function __construct($pattern)
     {
         $this->pattern = $pattern;
+        $this->processType();
     }
 
     /*
@@ -27,8 +28,6 @@ class Day
     */
     public function getDays()
     {
-        $this->processType();
-
         return $this->days;
     }
     
@@ -36,9 +35,8 @@ class Day
     * Method respnonsible for getting the sum of weekends
     */
     public function getSumOfWeekendDays()
-    {
-        $this->processType();        
-
+    {      
+        $weekendDays = 0;
         foreach($this->days as $day){
             $day  = strtolower($day);
             if ($day == "sat" || $day == "sun"){
@@ -54,7 +52,6 @@ class Day
     */
     public function hasWeekend()
     {
-        $this->processType();
  
         if (in_array("sat", $this->days) || in_array("sun", $this->days) ) {
             return true;            

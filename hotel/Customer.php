@@ -5,5 +5,4 @@ abstract class Customer
 {
     const REGULAR = "Regular";
     const REWARDS = "Rewards";
-
 }
