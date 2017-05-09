@@ -6,42 +6,25 @@ class Hotel
     private $rate;
     private $price;
     private $customerType;
-    private $day;
+    private $day; // object Day
+    private $pattern;
 
-    public function __construct($rate, $price, $customer, $day)
+    public function __construct($rate, $price, $customer,Day $day, $pattern)
     {
         $this->rate = $rate;
         $this->price = $price;
         $this->customer = $customer;
         $this->day = $day;
-    }
-
-    /*
-    * Method responsible for returning customer type.
-    */
-    public function getCustomerType()
-    {
-        return $this->customer;
-    }
-
-    /*
-    * Method responsible for caculating fare based on type of Customer and Day.
-    */
-    public function calculateRateBasedOnDays()
-    {
-        if($this->isRegularCustomer()) {
-            
-        }
-        
+        $this->pattern = $pattern;
     }
 
     /*
     * Method responsible for processing input in order to get the type of customer.
     */
-    public function processTypeOfCustomer($pattern)
+    public function processTypeOfCustomer()
     {
         $regex = "/^([\w]+)/";
-        preg_match_all($regex, $pattern, $customerType);
+        preg_match_all($regex, $this->pattern, $customerType);
         $this->customerType = $customerType[0];
         
         return $this; 
@@ -52,6 +35,8 @@ class Hotel
     */
     public function isRegularCustomer()
     {
+        $this->processTypeOfCustomer();
+
         $type = strtolower($this->customer);
         if ($type == "regular"){
             return true;
@@ -59,4 +44,25 @@ class Hotel
         return false;
     }
 
+    /*
+    * Method responsible for returning customer type.
+    */
+    public function getCustomerType()
+    {
+        $this->processTypeOfCustomer();
+        return $this->customer;
+    }
+
+    /*
+    * Method responsible for caculating fare based on type of Customer and Day.
+    */
+    public function calculateRateBasedOnDays()
+    {
+        $arrDays = $this->day->getDays();        
+        if($this->isRegularCustomer()) {
+            if ($this->day->hasWeekend()) {
+                
+            }
+        }        
+    }    
 }

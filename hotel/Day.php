@@ -27,6 +27,8 @@ class Day
     */
     public function getDays()
     {
+        $this->processType();
+
         return $this->days;
     }
     
@@ -34,7 +36,9 @@ class Day
     * Method respnonsible for getting the sum of weekends
     */
     public function getSumOfWeekendDays()
-    {        
+    {
+        $this->processType();        
+
         foreach($this->days as $day){
             $day  = strtolower($day);
             if ($day == "sat" || $day == "sun"){
@@ -43,5 +47,16 @@ class Day
         }
 
         return  $weekendDays;
+    }
+
+    public function hasWeekend()
+    {
+        $this->processType();
+ 
+        if (in_array("sat", $this->days) || in_array("sun", $this->days) ) {
+            return true;            
+        }
+
+        return false;
     }
 }
