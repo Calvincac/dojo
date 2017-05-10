@@ -32,7 +32,7 @@ class Day
     }
     
     /*
-    * Method respnonsible for getting the sum of weekends
+    * Method responsible for getting the sum of weekends
     */
     public function getSumOfWeekendDays()
     {      
@@ -52,7 +52,6 @@ class Day
     */
     public function hasWeekend()
     {
- 
         if (in_array("sat", $this->days) || in_array("sun", $this->days) ) {
             return true;            
         }
