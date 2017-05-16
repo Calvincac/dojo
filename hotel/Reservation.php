@@ -18,6 +18,10 @@ class Reservation
         }
     }
 
+    public function verifyWeekendRate () {
+
+    }
+
 
 
 }
