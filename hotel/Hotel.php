@@ -5,17 +5,15 @@ class Hotel
 {
     private $rate;
     private $prices;
-    private $customerType;
+    private $customer;
     private $day; // object Day
-    private $pattern;
 
     public function __construct($rate, $prices, $customer,Day $day)
     {
         $this->rate = $rate;
-        $this->price = $price;
+        $this->prices = $prices;
         $this->customer = $customer;
         $this->day = $day;
-        $this->pattern = $pattern;
     }
 
 

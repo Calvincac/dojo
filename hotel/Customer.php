@@ -3,22 +3,21 @@
 class Customer
 { 
     private $type;
-    private $pattern;
-
+   
     public function __construct($pattern)
     {
-        $this->processTypeOfCustomer();
+        $this->processTypeOfCustomer($pattern);
     }
 
     /*
     * Method responsible for processing input in order to get the type of customer.
     */
-    public function processTypeOfCustomer()
+    public function processTypeOfCustomer($pattern)
     {
         $regex = "/^([\w]+)/";
-        preg_match_all($regex, $this->pattern, $customerType);
+        preg_match_all($regex, $pattern, $customerType);
         $this->type = $customerType[0];
-        
+
         return $this; 
     }
 
@@ -33,4 +32,9 @@ class Customer
         }
         return false;
     } 
+
+    public function getType()
+    {
+        return $this->type;
+    }
 }

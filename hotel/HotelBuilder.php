@@ -1,20 +1,27 @@
 <?php
 require_once "Hotel.php";
+require_once "Customer.php";
 
 class HotelBuilder {
 
     private $hotels;
     private $prices;
-    
+    private $customerType;
+    private $days;
 
-    public function __construct()
+    public function __construct($pattern)
     {
+        $this->customerType = new Customer($pattern);
+        $this->days = new Day($pattern);
         $this->buildHotels();
     }
 
     public function buildHotels()
     {
-        //$rate, $price, $customer,Day $day, $pattern
+        $customer = $this->customerType;
+ 
+        $days = $this->days;
+        
         $lakewoodPrices = [
             'weekend' => [90, 80],
             'weekday' => [110, 90] 
@@ -28,10 +35,11 @@ class HotelBuilder {
             'weekend' => [150, 40],
             'weekday' => [220, 100] 
             ];
-        //terminar de implementar
-        $lakewood =  new Hotel(3, $lakewoodPrices  );
-        $bridgewood = new Hotel();
-        $ridgewood = new Hotel();
+        
+        $lakewood =  new Hotel(3, $lakewoodPrices, $customer,$days);
+        $bridgewood = new Hotel(4, $bridgewoodPrices, $customer, $days);
+        $ridgewood = new Hotel(5, $ridgewoodPrices, $customer, $days);
+
         $this->hotels = [$lakewood, $bridgewood, $ridgewood];
 
         return $this->hotels;
