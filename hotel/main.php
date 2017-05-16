@@ -1,9 +1,5 @@
 <?php
 
-require_once "Day.php";
-require_once "Hotel.php";
-require_once "Customer.php";
-require_once "Price.php";
 require_once "HotelBuilder.php";
 
 /*
@@ -49,19 +45,12 @@ Ridgewood -> Regular weekday: 220  Rewards weekday: 100 --- Regular weekend: 150
 
 */
 $input = "Regular: 16Mar2009(sat), 17Mar2009(tues), 18Mar2009(wed)";
-//$price = new Price(80);
-//$day = new Day($input);
-//$customer = Customer::REGULAR;
-
-//$hotel =  new Hotel(4, $price, $customer, $day, $input);
 
 $hotelBuilder = new HotelBuilder($input);
+$hotelBuilder->buildHotels();
 
+print_r($hotelBuilder->buildHotels()->calculateRate());
 
-
-print_r($hotelBuilder->buildHotels());
-
-//print_r($day->hasWeekend());
 
 
 

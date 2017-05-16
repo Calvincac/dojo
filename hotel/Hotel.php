@@ -6,9 +6,9 @@ class Hotel
     private $rate;
     private $prices;
     private $customer;
-    private $day; // object Day
+    private $day;
 
-    public function __construct($rate, $prices, $customer,Day $day)
+    public function __construct($rate, $prices, Customer $customer,Day $day)
     {
         $this->rate = $rate;
         $this->prices = $prices;
@@ -16,26 +16,13 @@ class Hotel
         $this->day = $day;
     }
 
-
-    /*
-    * Method responsible for returning customer type.
-    */
-    public function getCustomerType()
+    public function getDay()
     {
-        return $this->customer;
+        return $this->day;
     }
 
-    /*
-    * Method responsible for caculating fare based on type of Customer and Day.
-    */
-    public function calculateRateBasedOnDays()
+    public function getCustomer()
     {
-        $arrDays = $this->day->getDays();
-
-        if($this->isRegularCustomer()) {
-            if ($this->day->hasWeekend()) {
-                $weekendDays = $this->day->getSumOfWeekendDays();
-            }
-        }        
-    }    
+        return $this->customer;
+    }      
 }

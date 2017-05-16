@@ -2,22 +2,20 @@
 
 class Day
 {
-    private $pattern;
     private $days;
 
     public function __construct($pattern)
-    {
-        $this->pattern = $pattern;
-        $this->processType();
+    {       
+        $this->processType($pattern);
     }
 
     /*
     * Method responsible for processing day type.
     */
-    public function processType()
+    public function processType($pattern)
     {
         $regex = "/\b[a-z]+\b/";
-        preg_match_all($regex, $this->pattern, $days);
+        preg_match_all($regex, $pattern, $days);
         $this->days = $days[0];
         
         return $this;        

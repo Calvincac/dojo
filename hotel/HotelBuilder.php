@@ -1,6 +1,8 @@
 <?php
 require_once "Hotel.php";
 require_once "Customer.php";
+require_once "Day.php";
+require_once "Reservation.php";
 
 class HotelBuilder {
 
@@ -18,8 +20,7 @@ class HotelBuilder {
 
     public function buildHotels()
     {
-        $customer = $this->customerType;
- 
+        $customer = $this->customerType; 
         $days = $this->days;
         
         $lakewoodPrices = [
@@ -41,8 +42,9 @@ class HotelBuilder {
         $ridgewood = new Hotel(5, $ridgewoodPrices, $customer, $days);
 
         $this->hotels = [$lakewood, $bridgewood, $ridgewood];
+        $reservation = new Reservation($this->hotels);
 
-        return $this->hotels;
+        return $reservation;        
     }
    
 }
