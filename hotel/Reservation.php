@@ -15,36 +15,58 @@ class Reservation
     {
         foreach($this->hotels as $hotel) {
             if ($hotel->getCustomer()->isRegular()) {
-               $total = $this->calculateRateRegular($hotel);
-               
-            }            
+                $regularCode = 0;
+               $total = $this->calculateRateRegular($hotel, $regularCode);            
+            } else {
+                $rewardCode = 1;
+                $total = $this->calculateRateReward($hotel, $rewardCode);
+            }           
         }
     }
 
-    public function calculateRateRegular($hotel)
+    public function calculateRateRegular($hotel, $code)
     {
+        $weekendPrice = 0;
+
         if ($hotel->getDay()->hasWeekend()) {
-            $sumOfweekends =  $hotel->getDay()->getSumOfWeekendDays();
-            $sumOfweekDays =  $hotel->getDay()->getSumOfWeekDays();
-            $weekendPrice = $this->calculateWeekendRate($sumOfweekends, $hotel);
-            $weekPrice = $this->calculateWeekRate($sumOfweekDays, $hotel);
-            $total = $weekPrice + $weekendPrice;
-
-            return $total;
+            $sumOfweekends =  $hotel->getDay()->getSumOfWeekendDays();            
+            $weekendPrice = $this->calculateWeekendRate($sumOfweekends, $hotel, $code);                      
         }
+
+        $sumOfweekDays =  $hotel->getDay()->getSumOfWeekDays();
+        $weekPrice = $this->calculateWeekRate($sumOfweekDays, $hotel, $code);
+        $total = $weekPrice + $weekendPrice; 
+
+        return $total;
     }
 
-    public function calculateWeekendRate($sumOfweekends, $hotel)
+    public function calculateRateReward($hotel, $code)
     {
-        $weekendPrice =  $hotel->getPrice()['weekend'][0];
+        $weekenPrice = 0;
+
+        if ($hotel->getDay()->hasWeekend()) {
+            $sumOfweekends =  $hotel->getDay()->getSumOfWeekendDays();            
+            $weekendPrice = $this->calculateWeekendRate($sumOfweekends, $hotel, $code);                      
+        }
+        
+        $sumOfweekDays =  $hotel->getDay()->getSumOfWeekDays();
+        $weekPrice = $this->calculateWeekRate($sumOfweekDays, $hotel, $code);
+        $total = $weekPrice + $weekendPrice;
+
+        return $total;
+    }
+
+    public function calculateWeekendRate($sumOfweekends, $hotel, $code)
+    {
+        $weekendPrice =  $hotel->getPrice()['weekend'][$code];
         $weekendPrice = $weekendPrice * $sumOfweekends;
 
         return $weekendPrice;                
     }
 
-    public function calculateWeekRate($sumOfweekDays, $hotel)
+    public function calculateWeekRate($sumOfweekDays, $hotel, $code)
     {
-        $weekPrice =  $hotel->getPrice()['weekday'][0];
+        $weekPrice =  $hotel->getPrice()['weekday'][$code];
         $weekPrice =  $weekPrice * $sumOfweekDays;
         
         return $weekPrice;

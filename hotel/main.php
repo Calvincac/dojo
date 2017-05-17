@@ -44,7 +44,7 @@ Bridgewood -> Regular weekday: 160 Rewards weekday: 110 --- Regular weekend: 60 
 Ridgewood -> Regular weekday: 220  Rewards weekday: 100 --- Regular weekend: 150 Rewards weekend: 40
 
 */
-$input = "Regular: 16Mar2009(sat), 17Mar2009(tues), 18Mar2009(wed)";
+$input = "Regular: 16Mar2009(tues), 17Mar2009(tues), 18Mar2009(wed)";
 
 $hotelBuilder = new HotelBuilder($input);
 $hotelBuilder->buildHotels();
