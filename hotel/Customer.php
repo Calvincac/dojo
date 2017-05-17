@@ -24,17 +24,13 @@ class Customer
     /*
     * Method responsible for verifying if the type of customer is Regular.
     */
-    public function isRegularCustomer()
+    public function isRegular()
     {
-        $type = strtolower($this->type);
+        $type = strtolower($this->type[0]);
         if ($type == "regular"){
             return true;
         }
         return false;
     } 
 
-    public function getType()
-    {
-        return $this->type;
-    }
 }

@@ -23,5 +23,10 @@ class Hotel
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    public function getPrice()
+    {
+        return $this->prices;
     }      
 }

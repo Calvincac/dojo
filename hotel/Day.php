@@ -39,10 +39,26 @@ class Day
             $day  = strtolower($day);
             if ($day == "sat" || $day == "sun"){
                 $weekendDays++;
-            }
+            } 
         }
 
         return  $weekendDays;
+    }
+
+     /*
+    * Method responsible for getting the sum of weekends
+    */
+    public function getSumOfWeekDays()
+    {      
+        $weekDays = 0;
+        foreach($this->days as $day){
+            $day  = strtolower($day);
+            if ($day != "sat" || $day != "sun"){
+                $weekDays++;
+            } 
+        }
+
+        return  $weekDays;
     }
 
     /*
