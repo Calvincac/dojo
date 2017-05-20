@@ -32,7 +32,7 @@ class Hotel
         return $this->prices;
     }
 
-    public function getHotelName()
+    public function getName()
     {
         return $this->name;
     }      

@@ -6,6 +6,7 @@ class Reservation
     private $hotels;
     private $cheapestPrice = PHP_INT_MAX;
     private $cheapestHotel = null;
+    private $weekendPrice = null;
 
     public function __construct($hotels)
     {
@@ -19,45 +20,40 @@ class Reservation
             if ($hotel->getCustomer()->isRegular()) {
                 $regularCode = 0;
                 $total = $this->calculateRateRegular($hotel, $regularCode);
-               $this->getCheapestHotel =  $this->getCheapestHotel($total, $hotel);            
+                $this->getCheapestHotel =  $this->getCheapestHotel($total, $hotel);            
             } else {
                 $rewardCode = 1;
                 $total = $this->calculateRateReward($hotel, $rewardCode);
                 $this->getCheapestHotel = $this->getCheapestHotel($total, $hotel);                
             }                       
         }
-        
+
         return $this->getCheapestHotel;         
     }
 
     public function calculateRateRegular($hotel, $code)
     {
-        $weekendPrice = 0;
-
         if ($hotel->getDay()->hasWeekend()) {
             $sumOfweekends =  $hotel->getDay()->getSumOfWeekendDays();            
-            $weekendPrice = $this->calculateWeekendRate($sumOfweekends, $hotel, $code);                      
+            $this->weekendPrice = $this->calculateWeekendRate($sumOfweekends, $hotel, $code);                      
         }
-
         $sumOfweekDays =  $hotel->getDay()->getSumOfWeekDays();
         $weekPrice = $this->calculateWeekRate($sumOfweekDays, $hotel, $code);
-        $total = $weekPrice + $weekendPrice; 
+        $total = $weekPrice + $this->weekendPrice; 
 
         return $total;
     }
 
     public function calculateRateReward($hotel, $code)
     {
-        $weekendPrice = 0;
-
         if ($hotel->getDay()->hasWeekend()) {
             $sumOfweekends =  $hotel->getDay()->getSumOfWeekendDays();            
-            $weekendPrice = $this->calculateWeekendRate($sumOfweekends, $hotel, $code);                      
+            $this->weekendPrice = $this->calculateWeekendRate($sumOfweekends, $hotel, $code);                      
         }
         
         $sumOfweekDays =  $hotel->getDay()->getSumOfWeekDays();
         $weekPrice = $this->calculateWeekRate($sumOfweekDays, $hotel, $code);
-        $total = $weekPrice + $weekendPrice;
+        $total = $weekPrice + $this->weekendPrice;
 
         return $total;
     }
@@ -82,7 +78,7 @@ class Reservation
     {       
         if($total < $this->cheapestPrice ) {
             $this->cheapestPrice = $total;
-            $this->cheapestHotel = $hotel->getHotelName();
+            $this->cheapestHotel = $hotel->getName();
         }
         return $this->cheapestHotel;
     }
