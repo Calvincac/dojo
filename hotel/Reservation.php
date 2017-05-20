@@ -13,7 +13,9 @@ class Reservation
         $this->hotels = $hotels;
     }
 
-
+    /*
+    * Method responsible final rate
+    */
     public function calculateRate()
     {
         foreach($this->hotels as $hotel) {
@@ -31,6 +33,9 @@ class Reservation
         return $this->getCheapestHotel;         
     }
 
+    /*
+    * Method responsible for calculating Regular rate
+    */
     public function calculateRateRegular($hotel, $code)
     {
         if ($hotel->getDay()->hasWeekend()) {
@@ -44,6 +49,9 @@ class Reservation
         return $total;
     }
 
+    /*
+    * Method responsible for calculating Reward rate
+    */
     public function calculateRateReward($hotel, $code)
     {
         if ($hotel->getDay()->hasWeekend()) {
@@ -58,6 +66,9 @@ class Reservation
         return $total;
     }
 
+    /*
+    * Method responsible for calculating weekend rate
+    */
     public function calculateWeekendRate($sumOfweekends, $hotel, $code)
     {
         $weekendPrice =  $hotel->getPrice()['weekend'][$code];
@@ -66,6 +77,9 @@ class Reservation
         return $weekendPrice;                
     }
 
+    /*
+    * Method responsible for calculating week rate
+    */
     public function calculateWeekRate($sumOfweekDays, $hotel, $code)
     {
         $weekPrice =  $hotel->getPrice()['weekday'][$code];
@@ -74,6 +88,9 @@ class Reservation
         return $weekPrice;
     }
 
+    /*
+    * Method responsible for returning the cheapest hotel name
+    */
     public function getCheapestHotel($total, $hotel)
     {       
         if($total < $this->cheapestPrice ) {
