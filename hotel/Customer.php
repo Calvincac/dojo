@@ -31,6 +31,5 @@ class Customer
             return true;
         }
         return false;
-    } 
-
+    }
 }

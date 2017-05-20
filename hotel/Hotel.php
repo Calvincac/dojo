@@ -2,13 +2,15 @@
 
 class Hotel
 {
+    private $name;
     private $rate;
     private $prices;
     private $customer;
     private $day;
 
-    public function __construct($rate, $prices, Customer $customer,Day $day)
+    public function __construct($name, $rate, $prices, Customer $customer,Day $day)
     {
+        $this->name = $name;
         $this->rate = $rate;
         $this->prices = $prices;
         $this->customer = $customer;
@@ -28,5 +30,10 @@ class Hotel
     public function getPrice()
     {
         return $this->prices;
+    }
+
+    public function getHotelName()
+    {
+        return $this->name;
     }      
 }

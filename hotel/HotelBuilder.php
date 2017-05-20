@@ -37,14 +37,13 @@ class HotelBuilder {
             'weekday' => [220, 100] 
             ];
         
-        $lakewood =  new Hotel(3, $lakewoodPrices, $customer,$days);
-        $bridgewood = new Hotel(4, $bridgewoodPrices, $customer, $days);
-        $ridgewood = new Hotel(5, $ridgewoodPrices, $customer, $days);
+        $lakewood =  new Hotel("Lakewood", 3, $lakewoodPrices, $customer,$days);
+        $bridgewood = new Hotel("Bridgewood", 4, $bridgewoodPrices, $customer, $days);
+        $ridgewood = new Hotel("Ridgewood", 5, $ridgewoodPrices, $customer, $days);
 
         $this->hotels = [$lakewood, $bridgewood, $ridgewood];
         $reservation = new Reservation($this->hotels);
 
         return $reservation;        
-    }
-   
+    }   
 }
