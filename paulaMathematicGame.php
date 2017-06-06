@@ -16,8 +16,11 @@ a uppercase or lowercase character and another character between '0' and '9'.
 Output
 For each test case, one line must be printed with an integer, representing the solution for each sequence created by Paula
 */
+
+
 function main()
 {
+    global $argv;
     $numberOfTestCases = $argv[1];
     $firstDigit = rand(0,100);
     $secondDigit = rand(0,100);
@@ -30,6 +33,9 @@ function main()
 
     $indexFromLetter = array_rand($chars, 1);
     $chosenChar = $chars[$indexFromLetter];
+    preg_match("/\d/", $secondDigit, $match);
+    
+    $secondDigit = $match[0];
     verifyCase($chosenChar, $firstDigit, $secondDigit);
 }
 
@@ -37,21 +43,27 @@ function main()
 function verifyCase($chosenChar, $firstDigit, $secondDigit)
 {
     if(ctype_upper($chosenChar)){
-        preg_match("/\d/", $sencondDigit, $match);
-        $secondDigit = $match;
-    }    
+        preg_match("/\d/", $secondDigit, $match);
+        $secondDigit = $match[0];
+        subtractDigits($firstDigit, $secondDigit);
+        return;
+    }
+    addDigits();    
 }
 
-verifyCase();
-
-function subtractDigits()
+function subtractDigits($firstDigit, $secondDigit)
 {
-
+    return $firstDigit - $secondDigit;
 }
 
-function addDigits()
+function addDigits($firstDigit, $secondDigit)
 {
+    return $firstDigit + $secondDigit;
+}
 
+function multiplyDigits($firstDigit, $secondDigit)
+{
+    return $firstDigit * $secondDigit;
 }
 
 main();
