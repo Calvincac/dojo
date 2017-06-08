@@ -22,33 +22,20 @@ function main()
 {
     global $argv;
     $numberOfTestCases = $argv[1];
-    $firstDigit = rand(0,100);
-    $secondDigit = rand(0,100);
-    $chars = [
-        "a","b","c","d","e","f","g","h","i","j","k","l","m","n",
-        "o","p","q","r","s","t","u","v","x","y","z","A","B","C",
-        "D","E","F","G","H","I","J","K","L","M","N","O","P","Q",
-        "R","S","T","U","V","X","Y","Z"
-        ];
-
-    $indexFromLetter = array_rand($chars, 1);
-    $chosenChar = $chars[$indexFromLetter];
-    preg_match("/\d/", $secondDigit, $match);
-    
-    $secondDigit = $match[0];
-    verifyCase($chosenChar, $firstDigit, $secondDigit);
+    for($i=0; $i<$numberOfTestCases;$i++) {
+        getResultFromCase();
+    }    
 }
-
 
 function verifyCase($chosenChar, $firstDigit, $secondDigit)
 {
     if(ctype_upper($chosenChar)){
         preg_match("/\d/", $secondDigit, $match);
         $secondDigit = $match[0];
-        subtractDigits($firstDigit, $secondDigit);
-        return;
+        print_r(subtractDigits($firstDigit, $secondDigit));
+        return;        
     }
-    addDigits();    
+   print_r(addDigits($firstDigit, $secondDigit));    
 }
 
 function subtractDigits($firstDigit, $secondDigit)
@@ -64,6 +51,37 @@ function addDigits($firstDigit, $secondDigit)
 function multiplyDigits($firstDigit, $secondDigit)
 {
     return $firstDigit * $secondDigit;
+}
+
+function isEqual($firstDigit, $secondDigit)
+{
+    if ($firstDigit === $secondDigit) {
+        return true;
+    }
+    return false;
+}
+
+function getResultFromCase()
+{
+    $firstDigit = rand(0,100);
+    $secondDigit = rand(0,100);
+    $chars = [
+        "a","b","c","d","e","f","g","h","i","j","k","l","m","n",
+        "o","p","q","r","s","t","u","v","x","y","z","A","B","C",
+        "D","E","F","G","H","I","J","K","L","M","N","O","P","Q",
+        "R","S","T","U","V","X","Y","Z"
+        ];
+
+    $indexFromLetter = array_rand($chars, 1);
+    $chosenChar = $chars[$indexFromLetter];
+    preg_match("/\d/", $secondDigit, $match);
+    
+    $secondDigit = $match[0];
+    if (isEqual($firstDigit, $secondDigit)) {
+       print_r(multiplyDigits($firstDigit, $secondDigit));
+       return;
+    }
+    print_r(verifyCase($chosenChar, $firstDigit, $secondDigit));
 }
 
 main();
