@@ -14,6 +14,7 @@ obir obri oibr oirb orbi orib
 */
 
 $word = $argv[1];
+$temporaryWord = [];
 $letters = str_split($word);
 $length = count($letters);
 $potentialAnagrams = [];
@@ -23,12 +24,19 @@ for($i=$length; $i>=1; $i--) {
     $numberOfwordsPossible = $numberOfwordsPossible * $i;             
 }
 
-for($i=1; $i<=$numberOfwordsPossible; $i++) {
-    for($j=0; $j<$length; $j++) {
-        print ($letters[$j] . "\n");
-    }
+for ($x=0; $x<$length;$x++) {
+    $random[]  = rand(0,$length-1);        
 }
 
+shuffle($random);
 
+for($i=1; $i<=$numberOfwordsPossible; $i++) {
+    for($j=0; $j<$length; $j++) {
+        $temporaryWord [] = $word[$random];
+    }
+    $potentialAnagrams[] = implode($temporaryWord);
+}
+
+print_r($potentialAnagrams);
 
 //print_r($numberOfwordsPossible);
