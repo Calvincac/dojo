@@ -20,23 +20,33 @@ $length = count($letters);
 $potentialAnagrams = [];
 $numberOfwordsPossible = 1;
 
-for($i=$length; $i>=1; $i--) {
-    $numberOfwordsPossible = $numberOfwordsPossible * $i;             
-}
-
-for ($x=0; $x<$length;$x++) {
-    $random[]  = rand(0,$length-1);        
-}
-
-shuffle($random);
-
-for($i=1; $i<=$numberOfwordsPossible; $i++) {
-    for($j=0; $j<$length; $j++) {
-        $temporaryWord [] = $word[$random];
+function getNumberOfWordsPossible($length)
+{
+    for($i=$length; $i>=1; $i--) {
+        $numberOfwordsPossible = $numberOfwordsPossible * $i;             
     }
-    $potentialAnagrams[] = implode($temporaryWord);
+    return $numberOfwordsPossible;
 }
 
-print_r($potentialAnagrams);
+function getNonRepeatIndexes($length)
+{
+    for ($x=0; $x<$length;$x++) {
+        $random[]  = rand(0,$length-1);        
+    }
+    shuffle($random);
+    return $random[0];
+}
 
-//print_r($numberOfwordsPossible);
+function main($length)
+{
+    for($i=1; $i<=getNumberOfWordsPossible($length); $i++) {
+        for($j=0; $j<$length; $j++) {
+            $rand =  getNonRepeatIndexes();   
+            $temporaryWord [] = $word[$rand];
+        }
+        $potentialAnagrams[] = implode($temporaryWord);
+    }
+    print_r($potentialAnagrams);
+}
+
+main();
