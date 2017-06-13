@@ -13,15 +13,15 @@ obir obri oibr oirb orbi orib
 
 */
 
+global $word;
 $word = $argv[1];
 $temporaryWord = [];
 $letters = str_split($word);
 $length = count($letters);
-$potentialAnagrams = [];
-$numberOfwordsPossible = 1;
 
 function getNumberOfWordsPossible($length)
 {
+    $numberOfwordsPossible = 1;
     for($i=$length; $i>=1; $i--) {
         $numberOfwordsPossible = $numberOfwordsPossible * $i;             
     }
@@ -37,16 +37,17 @@ function getNonRepeatIndexes($length)
     return $random[0];
 }
 
-function main($length)
+function main($word, $length)
 {
-    for($i=1; $i<=getNumberOfWordsPossible($length); $i++) {
+    $potentialAnagrams = [];
+    $x = getNumberOfWordsPossible($length);
+    for($i=1; $i<=$x; $i++) {
         for($j=0; $j<$length; $j++) {
-            $rand =  getNonRepeatIndexes();   
+            $rand = getNonRepeatIndexes($length);   
             $temporaryWord [] = $word[$rand];
         }
         $potentialAnagrams[] = implode($temporaryWord);
     }
-    print_r($potentialAnagrams);
 }
 
-main();
+main($word, $length);
