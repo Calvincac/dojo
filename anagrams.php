@@ -34,20 +34,28 @@ function getNonRepeatIndexes($length)
         $random[]  = rand(0,$length-1);        
     }
     shuffle($random);
-    return $random[0];
+    return $random;
+}
+
+function sortWords($length, $word, $rand)
+{
+    for($g=0; $g<$length; $g++) {
+        $teste[] = $word[$rand[$g]];
+    }
+    return $teste;
 }
 
 function main($word, $length)
 {
     $potentialAnagrams = [];
     $x = getNumberOfWordsPossible($length);
-    for($i=1; $i<=$x; $i++) {
-        for($j=0; $j<$length; $j++) {
-            $rand = getNonRepeatIndexes($length);   
-            $temporaryWord [] = $word[$rand];
-        }
+    for($i=1; $i<=$x; $i++) {        
+        $rand = getNonRepeatIndexes($length);
+        $temporaryWord = sortWords($length, $word, $rand);
         $potentialAnagrams[] = implode($temporaryWord);
     }
+
+    print_r($potentialAnagrams);
 }
 
 main($word, $length);
