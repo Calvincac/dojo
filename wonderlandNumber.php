@@ -13,3 +13,11 @@ Source: https://github.com/gigasquid/wonderland-clojure-katas
 
 */
 
+$number = rand(1,500);
+$arr = [];
+
+for ($i=6;$i>1;$i--) {
+    $arr[$i] = $number * $i; 
+}
+
+print_r($arr);
