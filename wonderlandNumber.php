@@ -13,11 +13,26 @@ Source: https://github.com/gigasquid/wonderland-clojure-katas
 
 */
 
-$number = rand(1,500);
-$arr = [];
+function countNumberOfDigits($number)
+{
+    preg_match_all("/\d/", $number, $match);
+    return count($match[0]);
+} 
 
-for ($i=6;$i>1;$i--) {
-    $arr[$i] = $number * $i; 
+function main()
+{
+    $number = rand(1,500);
+    $numberOfDigits = countNumberOfDigits($number);
+    $arr = [];
+
+    for ($i=6;$i>1;$i--) {
+        $arr[$i] = $number * $i; 
+        $chosen = $arr[$i];
+
+        if($numberOfDigits === countNumberOfDigits($chosen)) {
+            print "Number {$chosen} is a Wonderland Number \n";
+        }
+    }
 }
+main();
 
-print_r($arr);
